@@ -1,14 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI, SchemaType, Schema } from "@google/generative-ai";
 
-const geminiConfigs = [
-  { key: process.env.GEMINI_API_KEY!, model: "gemini-2.5-flash" },
-  { key: process.env.GEMINI_API_KEY_2!, model: "gemini-2.5-flash" },
-  { key: process.env.GEMINI_API_KEY_3!, model: "gemini-2.5-flash" },
-  { key: process.env.GEMINI_API_KEY!, model: "gemini-1.5-flash" },
-  { key: process.env.GEMINI_API_KEY_2!, model: "gemini-1.5-flash" },
-  { key: process.env.GEMINI_API_KEY_3!, model: "gemini-1.5-flash" },
-].filter(c => c.key);
+
 
 const responseSchema: Schema = {
   type: SchemaType.ARRAY,
@@ -19,6 +12,15 @@ const responseSchema: Schema = {
 };
 
 export async function POST(req: NextRequest) {
+  const geminiConfigs = [
+    { key: process.env.GEMINI_API_KEY!, model: "gemini-2.5-flash" },
+    { key: process.env.GEMINI_API_KEY_2!, model: "gemini-2.5-flash" },
+    { key: process.env.GEMINI_API_KEY_3!, model: "gemini-2.5-flash" },
+    { key: process.env.GEMINI_API_KEY!, model: "gemini-1.5-flash" },
+    { key: process.env.GEMINI_API_KEY_2!, model: "gemini-1.5-flash" },
+    { key: process.env.GEMINI_API_KEY_3!, model: "gemini-1.5-flash" },
+  ].filter(c => c.key);
+
   try {
     const data = await req.formData();
     const image = data.get("image") as File;

@@ -18,14 +18,7 @@ const recipeSchema: Schema = {
   required: ["title", "prepTime", "cookTime", "difficulty", "ingredients", "instructions"]
 };
 
-const geminiConfigs = [
-  { key: process.env.GEMINI_API_KEY!, model: "gemini-2.5-flash" },
-  { key: process.env.GEMINI_API_KEY_2!, model: "gemini-2.5-flash" },
-  { key: process.env.GEMINI_API_KEY_3!, model: "gemini-2.5-flash" },
-  { key: process.env.GEMINI_API_KEY!, model: "gemini-1.5-flash" },
-  { key: process.env.GEMINI_API_KEY_2!, model: "gemini-1.5-flash" },
-  { key: process.env.GEMINI_API_KEY_3!, model: "gemini-1.5-flash" },
-].filter(c => c.key);
+
 
 async function generateWithOpenRouter(prompt: string) {
   const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -55,6 +48,15 @@ async function generateWithOpenRouter(prompt: string) {
 }
 
 export async function POST(req: NextRequest) {
+  const geminiConfigs = [
+    { key: process.env.GEMINI_API_KEY!, model: "gemini-2.5-flash" },
+    { key: process.env.GEMINI_API_KEY_2!, model: "gemini-2.5-flash" },
+    { key: process.env.GEMINI_API_KEY_3!, model: "gemini-2.5-flash" },
+    { key: process.env.GEMINI_API_KEY!, model: "gemini-1.5-flash" },
+    { key: process.env.GEMINI_API_KEY_2!, model: "gemini-1.5-flash" },
+    { key: process.env.GEMINI_API_KEY_3!, model: "gemini-1.5-flash" },
+  ].filter(c => c.key);
+
   try {
     const { ingredients, lang } = await req.json();
 
