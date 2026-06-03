@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
+import { GoogleGenerativeAI, SchemaType, Schema } from "@google/generative-ai";
 
 const geminiConfigs = [
   { key: process.env.GEMINI_API_KEY!, model: "gemini-2.5-flash" },
@@ -10,7 +10,7 @@ const geminiConfigs = [
   { key: process.env.GEMINI_API_KEY_3!, model: "gemini-1.5-flash" },
 ].filter(c => c.key);
 
-const responseSchema = {
+const responseSchema: Schema = {
   type: SchemaType.ARRAY,
   items: {
     type: SchemaType.STRING,
