@@ -52,9 +52,9 @@ export async function POST(req: NextRequest) {
     { key: process.env.GEMINI_API_KEY!, model: "gemini-2.5-flash" },
     { key: process.env.GEMINI_API_KEY_2!, model: "gemini-2.5-flash" },
     { key: process.env.GEMINI_API_KEY_3!, model: "gemini-2.5-flash" },
-    { key: process.env.GEMINI_API_KEY!, model: "gemini-1.5-flash" },
-    { key: process.env.GEMINI_API_KEY_2!, model: "gemini-1.5-flash" },
-    { key: process.env.GEMINI_API_KEY_3!, model: "gemini-1.5-flash" },
+    { key: process.env.GEMINI_API_KEY!, model: "gemini-1.5-flash-latest" },
+    { key: process.env.GEMINI_API_KEY_2!, model: "gemini-1.5-flash-latest" },
+    { key: process.env.GEMINI_API_KEY_3!, model: "gemini-1.5-flash-latest" },
   ].filter(c => c.key);
 
   try {
